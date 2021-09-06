@@ -1,0 +1,35 @@
+---
+title: 'Sprint 1 - Análisis y limpieza de datos'
+author: "Equipo Golden- Integrantes: Machinandiarena- Meo - Santiago - Seguí"
+date: "12/09/2021"
+output:
+  html_document:
+    highlight: default
+    number_sections: no
+    theme: cosmo
+    toc: yes
+    toc_depth: 2
+    includes:
+      in_header: HeaderEDIC.html
+  word_document: default
+  pdf_document:
+    highlight: zenburn
+    toc: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Ejemplos Título
+## Subtítulo 1
+### Subtítulo 2
+#### Subtítulo 3
+
+
+```{r library}
+if(!require(tidyverse)){
+    install.packages('tidyverse')
+    library(tidyverse)
+  }
+```
+
