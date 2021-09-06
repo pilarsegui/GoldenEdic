@@ -1,0 +1,188 @@
+---
+title: 'Sprint 1 - Anáisis y transformación de datos'
+author: "Golden - Integrantes: Machinandiarena, Meo, Santiago, Segui "
+date: "12/09/2021"
+output:
+  html_document:
+    highlight: default
+    number_sections: no
+    theme: cosmo
+    toc: yes
+    toc_depth: 2
+    includes:
+      in_header: HeaderEDIC.html
+  word_document: default
+  pdf_document:
+    highlight: zenburn
+    toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Instalación de paquetes
+Para comenzar se descarga la librería tidyverse, y así complementar las funciones básicas de R.
+```{r library, message=FALSE, warning=FALSE}
+if(!require(tidyverse)){
+    install.packages('tidyverse')
+    library(tidyverse)
+}
+```
+
+## Directorio de trabajo
+```{r}
+#Para saber donde está el directorio
+getwd()
+```
+
+## Base de datos
+A continuación se importa la base de datos
+```{r}
+library(readr) 
+train_edic<- read_csv("C:/Golden/train_edic.csv")
+```
+
+## Análisis inicial
+```{r}
+summary(train_edic)
+```
+
+
+## Transformación de variables
+```{r}
+ var_artistname <- train_edic$artist_name
+ var_trackname <- train_edic$track_name
+ var_genre <- train_edic$genre
+ var_popularity <- train_edic$popularity
+ var_danceability <- train_edic$danceability
+ var_energy <- train_edic$energy
+ var_key <- train_edic$key
+ var_loudness <- train_edic$loudness
+ var_mode <- train_edic$mode
+ var_mode <- as.logical(var_mode)
+ var_speechiness <- train_edic$speechiness
+ var_acousticness <- train_edic$acousticness
+ var_genre<- train_edic$genre
+ var_time_signature<- train_edic$time_signature
+ var_duration<- train_edic$`duration_in min/ms`
+ var_tempo<-train_edic$tempo
+ var_valence<-train_edic$valence
+ var_liveness<-train_edic$liveness
+ var_instrumentalness<- train_edic$instrumentalness
+```
+
+
+## Construcción de gráficos
+###
+### Boxplots
+A continuación, se muestran las nueve variables que muestran valores atípicos. 
+```{r, echo=FALSE, fig.width=20, fig.height=15}
+par(mfrow=c(2,2)) 
+boxplot(var_popularity,
+        col="pink",
+        outcol= "red",
+        main="Popularity",
+        cex.main=2)
+
+boxplot(var_loudness,
+        col="pink",
+        outcol= "red",
+        main="Loudness",
+        cex.main=2)
+
+boxplot(var_instrumentalness,
+        col="pink",
+        outcol= "red",
+        main="Instrumentalness",
+        cex.main=2)
+
+boxplot(var_liveness,
+        col="pink",
+        outcol= "red",
+        main="Liveness",
+        cex.main=2)
+
+par(mfrow=c(2,2)) 
+
+boxplot(var_speechiness,
+        col="pink",
+        outcol= "red",
+        main="Speechiness",
+        cex.main=2)
+
+boxplot(var_duration,
+        col="pink",
+        outcol= "red",
+        main="Instrumentalness",
+        cex.main=2)
+
+boxplot(var_tempo,
+        col="pink",
+        outcol= "red",
+        main="Tempo",
+        cex.main=2)
+
+boxplot(var_danceability,
+        col="pink",
+        outcol= "red",
+        main="Danceability",
+        cex.main=2)
+
+par(mfrow=c(1,2)) 
+
+boxplot(var_time_signature,
+        col="pink",
+        outcol= "red",
+        main="Time signature",
+        cex.main=2)
+```
+Luego, se grafican las demás variables
+```{r, echo=FALSE, fig.width=20, fig.height=15}
+par(mfrow=c(2,2)) 
+boxplot(var_key,
+        col="pink",
+        outcol= "red",
+        main="Key",
+        cex.main=2)
+
+boxplot(var_energy,
+        col="pink",
+        outcol= "red",
+        main="Energy",
+        cex.main=2)
+
+boxplot(var_valence,
+        col="pink",
+        outcol= "red",
+        main="Valence",
+        cex.main=2)
+
+boxplot(var_acousticness,
+        col="pink",
+        outcol= "red",
+        main="Acousticness",
+        cex.main=2)
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=15, fig.height=20}
+if(!require(psych)){
+    install.packages('psych')
+    library(psych)
+}
+train_edic_cuanti <- train_edic[c(3,4,5,6,7,9,10,11,12,13,14,15,16)]
+multi.hist(train_edic_cuanti,
+           dcol= c("red", "black"),
+          dlty= c("dotted", "solid"),
+          global = FALSE,
+          bcol="pink",
+          ncol=2,
+          cex.main=3,
+          cex.axis=2,
+          cex.lab=2,
+          mar=c(4,5,4,5),
+)
+```
+
