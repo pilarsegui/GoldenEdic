@@ -42,7 +42,7 @@ getwd()
 A continuación se importa la base de datos
 ```{r}
 library(readr) 
-train_edic<- read_csv("C:/Golden/train_edic.csv")
+train_edic<- read_csv("./train_edic.csv")
 ```
 
 ## Análisis inicial
